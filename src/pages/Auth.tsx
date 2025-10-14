@@ -88,12 +88,12 @@ const Auth = () => {
                     required
                   />
                 </IonItem>
-                <IonButton type="submit" expand="block" className="ion-margin-top">
-                  Ingresar
-                </IonButton>
-                <IonButton type="button" expand="block" fill="outline" onClick={() => history.push("/")}> {/* CAMBIO AQUÍ */}
-                  Volver al Menú
-                </IonButton>
+                  <IonButton type="submit" expand="block" className="ion-margin-top">
+                    Ingresar
+                  </IonButton>
+                  <IonButton type="button" expand="block" fill="outline" routerLink="/">
+                    Volver al Menú
+                  </IonButton>
               </form>
             </IonCardContent>
           </IonCard>
