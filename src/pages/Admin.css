@@ -1,0 +1,69 @@
+/* --- Estructura Principal --- */
+.admin-page .admin-content {
+  /* Recrea el "container mx-auto" para centrar el contenido */
+  max-width: 896px; /* Equivalente a max-w-4xl de Tailwind */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Encabezado Personalizado --- */
+.admin-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.admin-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-header-title h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.admin-header-title p {
+  font-size: 0.75rem;
+  color: #a1a1aa; /* text-muted-foreground */
+  margin: 0;
+}
+
+/* --- Contenido Principal --- */
+.day-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.day-menu-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.day-menu-header p {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+/* Rejilla para las tarjetas de comida */
+.food-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Estilo para cuando no hay platillos */
+.no-food-placeholder {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: #666;
+  border: 1px dashed var(--ion-color-medium);
+  border-radius: var(--radius);
+  margin-top: 1rem;
+}

@@ -1,0 +1,46 @@
+.auth-page ion-content {
+  /* Fondo con degradado sutil usando nuestras variables de color */
+  --background: linear-gradient(135deg, 
+    hsla(var(--ion-color-primary-rgb), 0.05), 
+    hsla(var(--ion-color-secondary-rgb), 0.05)
+  );
+}
+
+/* Contenedor para centrar la tarjeta de login */
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem;
+}
+
+/* Estilo para el ícono circular del encabezado */
+.auth-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.auth-icon {
+  height: 4rem; /* 64px */
+  width: 4rem; /* 64px */
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-primary-shade));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+
+.auth-icon ion-icon {
+  font-size: 2rem; /* 32px */
+  color: var(--ion-color-primary-contrast);
+}
+
+/* Espaciado para el formulario */
+.auth-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Reemplaza el "space-y-4" de Tailwind */
+}

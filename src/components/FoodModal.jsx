@@ -46,14 +46,16 @@ const FoodModal = ({ open, onClose, onSave, food }) => {
   return (
     <IonModal isOpen={open} onDidDismiss={onClose}>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="primary">
           <IonTitle>{food ? "Editar Platillo" : "Agregar Platillo"}</IonTitle>
           <IonButtons slot="end">
             <IonButton onClick={onClose}>Cancelar</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
+      
       <IonContent className="ion-padding">
+        {/* En Ionic, los inputs suelen ir dentro de IonItem para un mejor estilo y accesibilidad */}
         <IonItem>
           <IonLabel position="stacked">Nombre del Platillo</IonLabel>
           <IonInput
@@ -85,6 +87,7 @@ const FoodModal = ({ open, onClose, onSave, food }) => {
           </IonSelect>
         </IonItem>
       </IonContent>
+
       <IonFooter>
         <IonToolbar>
             <IonButton expand="block" onClick={handleSave} className="ion-margin">

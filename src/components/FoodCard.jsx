@@ -10,9 +10,10 @@ import {
   IonCardTitle
 } from '@ionic/react';
 import { pencil, trash } from 'ionicons/icons';
+import './FoodCard.css'; // Importamos nuestro nuevo archivo CSS
 
 const FoodCard = ({ id, name, description, type, isAdmin, onEdit, onDelete }) => {
-  // Función para asignar colores a las etiquetas según el tipo de platillo
+  // ADAPTACIÓN: Esta función ahora devuelve los nombres de los colores de Ionic
   const getTypeColor = (type) => {
     const typeMap = {
       "Plato Fuerte": "primary",
@@ -24,9 +25,9 @@ const FoodCard = ({ id, name, description, type, isAdmin, onEdit, onDelete }) =>
   };
 
   return (
-    <IonCard>
+    <IonCard className="food-card"> {/* Aplicamos nuestra clase CSS */}
       <IonItem lines="none">
-        <div slot="start" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        <div slot="start" style={{ flex: 1 }}>
           <IonCardTitle>{name}</IonCardTitle>
           <IonChip color={getTypeColor(type)}>
             <IonLabel>{type}</IonLabel>
@@ -36,7 +37,7 @@ const FoodCard = ({ id, name, description, type, isAdmin, onEdit, onDelete }) =>
         {isAdmin && (
           <IonButtons slot="end">
             <IonButton fill="clear" onClick={() => onEdit?.(id)}>
-              <IonIcon slot="icon-only" icon={pencil} color="primary" />
+              <IonIcon slot="icon-only" icon={pencil} />
             </IonButton>
             <IonButton fill="clear" onClick={() => onDelete?.(id)}>
               <IonIcon slot="icon-only" icon={trash} color="danger" />

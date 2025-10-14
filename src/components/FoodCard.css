@@ -1,0 +1,24 @@
+.food-card {
+  /* Usamos la variable de transición que definimos en variables.css */
+  transition: var(--transition-smooth);
+  margin-bottom: 1rem; /* Añade un poco de espacio entre tarjetas */
+}
+
+/* Replicamos el efecto de sombra y de "levantarse" al pasar el mouse */
+.food-card:hover {
+  /* Usamos la variable de sombra que definimos */
+  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
+}
+
+/* Ajustes para el título dentro de la tarjeta */
+.food-card ion-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Ajustes para los botones de edición y borrado */
+.food-card ion-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+}
