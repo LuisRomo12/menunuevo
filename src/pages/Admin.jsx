@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"; // CAMBIO AQUÍ
+import { useHistory } from "react-router-dom";
 import { 
   IonContent, 
   IonHeader, 
@@ -17,26 +17,26 @@ import {
 } from '@ionic/react';
 import FoodCard from "../components/FoodCard";
 import FoodModal from "../components/FoodModal";
-import { initialMenuData, DayMenu, FoodItem } from "../data/menuData";
+import { initialMenuData } from "../data/menuData";
 import { logOutOutline, addOutline } from 'ionicons/icons';
 
 const Admin = () => {
-  const [menuData, setMenuData] = useState<DayMenu[]>(() => {
+  const [menuData, setMenuData] = useState(() => {
     const saved = localStorage.getItem("menuData");
     return saved ? JSON.parse(saved) : initialMenuData;
   });
   const [modalOpen, setModalOpen] = useState(false);
-  const [editingFood, setEditingFood] = useState<FoodItem | null>(null);
+  const [editingFood, setEditingFood] = useState(null);
   const [currentDay, setCurrentDay] = useState("Lunes");
-  const history = useHistory(); // CAMBIO AQUÍ
+  const history = useHistory();
   const [presentToast] = useIonToast();
 
   useEffect(() => {
     const isAdmin = localStorage.getItem("isAdmin");
     if (!isAdmin) {
-      history.push("/auth"); // CAMBIO AQUÍ
+      history.push("/auth");
     }
-  }, [history]); // CAMBIO AQUÍ
+  }, [history]);
 
   useEffect(() => {
     localStorage.setItem("menuData", JSON.stringify(menuData));
@@ -49,7 +49,7 @@ const Admin = () => {
       duration: 2000,
       position: 'bottom'
     });
-    window.location.href = "/"; // Usa esto en lugar de history.push
+    window.location.href = "/";
   };
 
   const handleAddFood = () => {
@@ -57,7 +57,7 @@ const Admin = () => {
     setModalOpen(true);
   };
 
-  const handleEditFood = (id: string) => {
+  const handleEditFood = (id) => {
     const food = menuData
       .flatMap((day) => day.foods)
       .find((f) => f.id === id);
@@ -67,7 +67,7 @@ const Admin = () => {
     }
   };
 
-  const handleDeleteFood = (id: string) => {
+  const handleDeleteFood = (id) => {
     setMenuData((prev) =>
       prev.map((day) => ({
         ...day,
@@ -81,7 +81,7 @@ const Admin = () => {
     });
   };
 
-  const handleSaveFood = (foodData: Omit<FoodItem, "id"> & { id?: string }) => {
+  const handleSaveFood = (foodData) => {
     if (foodData.id) {
       // Edit existing
       setMenuData((prev) =>
@@ -101,7 +101,7 @@ const Admin = () => {
       });
     } else {
       // Add new
-      const newFood: FoodItem = {
+      const newFood = {
         id: Date.now().toString(),
         name: foodData.name,
         description: foodData.description,
@@ -147,7 +147,7 @@ const Admin = () => {
 
         <IonSegment 
           value={currentDay} 
-          onIonChange={e => setCurrentDay(e.detail.value as string)}
+          onIonChange={e => setCurrentDay(e.detail.value)}
           scrollable
         >
           {menuData.map((day) => (

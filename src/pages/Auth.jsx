@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom"; // CAMBIO AQUÍ
+import { useHistory } from "react-router-dom";
 import { 
   IonContent, 
   IonPage, 
@@ -20,13 +20,13 @@ import { restaurantOutline } from 'ionicons/icons';
 const Auth = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory(); // CAMBIO AQUÍ
+  const history = useHistory();
   const [presentToast] = useIonToast();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     
-    // Simple authentication (in real app, this would be backend)
+    // Simple authentication
     if (username === "admin" && password === "cocina2024") {
       localStorage.setItem("isAdmin", "true");
       presentToast({
@@ -34,7 +34,7 @@ const Auth = () => {
         duration: 2000,
         color: 'success'
       });
-      history.push("/admin"); // CAMBIO AQUÍ
+      history.push("/admin");
     } else {
       presentToast({
         message: 'Usuario o contraseña incorrectos.',
@@ -74,7 +74,7 @@ const Auth = () => {
                     type="text"
                     placeholder="Ingresa tu usuario"
                     value={username}
-                    onIonChange={(e) => setUsername(e.detail.value!)}
+                    onIonChange={(e) => setUsername(e.detail.value)}
                     required
                   />
                 </IonItem>
@@ -84,7 +84,7 @@ const Auth = () => {
                     type="password"
                     placeholder="Ingresa tu contraseña"
                     value={password}
-                    onIonChange={(e) => setPassword(e.detail.value!)}
+                    onIonChange={(e) => setPassword(e.detail.value)}
                     required
                   />
                 </IonItem>

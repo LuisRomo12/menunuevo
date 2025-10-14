@@ -1,16 +1,4 @@
-export interface FoodItem {
-  id: string;
-  name: string;
-  description: string;
-  type: string;
-}
-
-export interface DayMenu {
-  day: string;
-  foods: FoodItem[];
-}
-
-export const initialMenuData: DayMenu[] = [
+export const initialMenuData = [
   {
     day: "Lunes",
     foods: [
