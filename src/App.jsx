@@ -1,8 +1,8 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
-/* Core CSS */
+/* Los imports de CSS ya están en main.jsx, pero no hace daño dejarlos aquí */
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
@@ -22,14 +22,13 @@ import Admin from './pages/Admin';
 
 setupIonicReact();
 
-const App: React.FC = () => (
+const App = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/" component={Index} />
         <Route exact path="/auth" component={Auth} />
         <Route exact path="/admin" component={Admin} />
-        {/* Elimina temporalmente la ruta 404 para probar */}
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

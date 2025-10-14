@@ -13,11 +13,11 @@ import {
   IonFooter
 } from '@ionic/react';
 import FoodCard from "../components/FoodCard";
-import { initialMenuData, DayMenu } from "../data/menuData";
+import { initialMenuData } from "../data/menuData";
 import { shieldCheckmarkOutline } from 'ionicons/icons';
 
 const Index = () => {
-  const [menuData] = useState<DayMenu[]>(initialMenuData);
+  const [menuData] = useState(initialMenuData);
   const [selectedDay, setSelectedDay] = useState(menuData[0].day);
 
   const activeDayMenu = menuData.find(day => day.day === selectedDay);
@@ -27,11 +27,10 @@ const Index = () => {
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>Cafetería UTA</IonTitle>
-          {/* SOLUCIÓN: Usa routerLink en lugar de onClick */}
-            <IonButton slot="end" fill="clear" color="light" href="/auth">
-              <IonIcon slot="start" icon={shieldCheckmarkOutline} />
-              Admin
-            </IonButton>
+          <IonButton slot="end" fill="clear" color="light" href="/auth">
+            <IonIcon slot="start" icon={shieldCheckmarkOutline} />
+            Admin
+          </IonButton>
         </IonToolbar>
       </IonHeader>
 
@@ -44,7 +43,7 @@ const Index = () => {
 
         <IonSegment
           value={selectedDay}
-          onIonChange={e => setSelectedDay(e.detail.value as string)}
+          onIonChange={e => setSelectedDay(e.detail.value)}
           scrollable
         >
           {menuData.map((day) => (
