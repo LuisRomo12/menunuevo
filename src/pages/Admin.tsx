@@ -49,7 +49,7 @@ const Admin = () => {
       duration: 2000,
       position: 'bottom'
     });
-    history.push("/"); // CAMBIO AQUÍ
+    window.location.href = "/"; // Usa esto en lugar de history.push
   };
 
   const handleAddFood = () => {
