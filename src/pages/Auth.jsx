@@ -16,6 +16,7 @@ import {
   IonIcon
 } from '@ionic/react';
 import { restaurantOutline } from 'ionicons/icons';
+import './Auth.css'; // Importamos nuestro nuevo CSS
 
 const Auth = () => {
   const [username, setUsername] = useState("");
@@ -25,8 +26,6 @@ const Auth = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    // Simple authentication
     if (username === "admin" && password === "cocina2024") {
       localStorage.setItem("isAdmin", "true");
       presentToast({
@@ -45,27 +44,20 @@ const Auth = () => {
   };
 
   return (
-    <IonPage>
-      <IonContent fullscreen className="ion-padding">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+    <IonPage className="auth-page">
+      <IonContent fullscreen>
+        <div className="auth-container">
           <IonCard style={{ maxWidth: '450px' }}>
             <IonCardHeader className="ion-text-center">
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-                  <div style={{
-                      height: '64px',
-                      width: '64px',
-                      borderRadius: '50%',
-                      background: 'linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-primary-shade))',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                  }}>
-                      <IonIcon icon={restaurantOutline} style={{ fontSize: '32px', color: 'white' }} />
-                  </div>
+              <div className="auth-icon-wrapper">
+                <div className="auth-icon">
+                  <IonIcon icon={restaurantOutline} />
+                </div>
               </div>
               <IonCardTitle>Panel de Administración</IonCardTitle>
               <IonCardSubtitle>Ingresa tus credenciales para continuar</IonCardSubtitle>
             </IonCardHeader>
+
             <IonCardContent>
               <form onSubmit={handleLogin}>
                 <IonItem>
@@ -88,12 +80,12 @@ const Auth = () => {
                     required
                   />
                 </IonItem>
-                  <IonButton type="submit" expand="block" className="ion-margin-top">
-                    Ingresar
-                  </IonButton>
-                  <IonButton type="button" expand="block" fill="outline" routerLink="/">
-                    Volver al Menú
-                  </IonButton>
+                <IonButton type="submit" expand="block">
+                  Ingresar
+                </IonButton>
+                <IonButton type="button" expand="block" fill="outline" routerLink="/">
+                  Volver al Menú
+                </IonButton>
               </form>
             </IonCardContent>
           </IonCard>
