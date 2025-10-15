@@ -1,2 +1,55 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+/* Para toda la aplicación */
+:root {
+  /** COLORES PRINCIPALES **/
+  --ion-color-primary: hsl(24, 88%, 58%);
+  --ion-color-primary-rgb: 245, 121, 34;
+  --ion-color-primary-contrast: hsl(0, 0%, 100%);
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: hsl(24, 88%, 51%);
+  --ion-color-primary-tint: hsl(24, 88%, 69%);
+
+  --ion-color-secondary: hsl(142, 76%, 45%);
+  --ion-color-secondary-rgb: 45, 211, 111;
+  --ion-color-secondary-contrast: hsl(0, 0%, 100%);
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: hsl(142, 76%, 39%);
+  --ion-color-secondary-tint: hsl(142, 76%, 57%);
+  
+  --ion-color-tertiary: hsl(217, 91%, 60%); /* Usando tu --accent */
+  --ion-color-tertiary-rgb: 56, 118, 241;
+  --ion-color-tertiary-contrast: hsl(0, 0%, 100%);
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: hsl(217, 91%, 53%);
+  --ion-color-tertiary-tint: hsl(217, 91%, 70%);
+
+  /** COLORES DE UI (Éxito, Peligro, etc.) **/
+  --ion-color-success: hsl(142, 76%, 45%); /* Usando tu --secondary */
+  --ion-color-warning: hsl(42, 100%, 68%);
+  --ion-color-danger: hsl(0, 84%, 60%);  /* Usando tu --destructive */
+  
+  /** COLORES DE FONDO Y TEXTO **/
+  --ion-background-color: hsl(42, 100%, 98%);
+  --ion-text-color: hsl(24, 24%, 12%);
+
+  /** OTROS ESTILOS DE TU DISEÑO **/
+  --radius: 0.75rem;
+  --shadow-card: 0 4px 12px -2px hsl(24 88% 58% / 0.1);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estilos para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+  body {
+    --ion-background-color: hsl(42, 100%, 98%);
+    --ion-text-color: hsl(24, 24%, 12%);
+
+    --ion-color-primary: hsl(24, 88%, 58%);
+    --ion-color-secondary: hsl(142, 76%, 45%);
+    --ion-color-tertiary: hsl(217, 91%, 60%);
+    --ion-color-success: hsl(142, 76%, 45%);
+    --ion-color-warning: hsl(42, 100%, 58%);
+    --ion-color-danger: hsl(0, 84%, 60%);
+  }
+}

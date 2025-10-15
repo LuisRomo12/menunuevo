@@ -16,21 +16,7 @@ import {
   IonFooter
 } from "@ionic/react";
 
-interface FoodItem {
-  id: string;
-  name: string;
-  description: string;
-  type: string;
-}
-
-interface FoodModalProps {
-  open: boolean;
-  onClose: () => void;
-  onSave: (food: Omit<FoodItem, "id"> & { id?: string }) => void;
-  food?: FoodItem | null;
-}
-
-const FoodModal = ({ open, onClose, onSave, food }: FoodModalProps) => {
+const FoodModal = ({ open, onClose, onSave, food }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
@@ -58,24 +44,24 @@ const FoodModal = ({ open, onClose, onSave, food }: FoodModalProps) => {
   };
 
   return (
-    // Reemplazamos <Dialog> por <IonModal>
     <IonModal isOpen={open} onDidDismiss={onClose}>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="primary">
           <IonTitle>{food ? "Editar Platillo" : "Agregar Platillo"}</IonTitle>
           <IonButtons slot="end">
             <IonButton onClick={onClose}>Cancelar</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
+      
       <IonContent className="ion-padding">
-        {/* En Ionic, los inputs suelen ir dentro de IonItem para un mejor estilo */}
+        {/* En Ionic, los inputs suelen ir dentro de IonItem para un mejor estilo y accesibilidad */}
         <IonItem>
           <IonLabel position="stacked">Nombre del Platillo</IonLabel>
           <IonInput
             placeholder="Ej: Tacos de Pollo"
             value={name}
-            onIonChange={(e) => setName(e.detail.value!)}
+            onIonChange={(e) => setName(e.detail.value)}
           />
         </IonItem>
         <IonItem>
@@ -83,7 +69,7 @@ const FoodModal = ({ open, onClose, onSave, food }: FoodModalProps) => {
           <IonTextarea
             placeholder="Describe el platillo..."
             value={description}
-            onIonChange={(e) => setDescription(e.detail.value!)}
+            onIonChange={(e) => setDescription(e.detail.value)}
             rows={3}
           />
         </IonItem>
@@ -101,6 +87,7 @@ const FoodModal = ({ open, onClose, onSave, food }: FoodModalProps) => {
           </IonSelect>
         </IonItem>
       </IonContent>
+
       <IonFooter>
         <IonToolbar>
             <IonButton expand="block" onClick={handleSave} className="ion-margin">

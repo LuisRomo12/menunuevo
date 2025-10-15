@@ -1,26 +1,24 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom"; // CAMBIO AQUÍ
-import { 
-  IonContent, 
-  IonHeader, 
-  IonPage, 
-  IonTitle, 
-  IonToolbar, 
-  IonButton, 
-  IonSegment, 
-  IonSegmentButton, 
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonButton,
+  IonSegment,
+  IonSegmentButton,
   IonLabel,
   IonIcon,
   IonFooter
 } from '@ionic/react';
 import FoodCard from "../components/FoodCard";
-import { initialMenuData, DayMenu } from "../data/menuData";
-import { shieldCheckmarkOutline, restaurantOutline } from 'ionicons/icons';
+import { initialMenuData } from "../data/menuData";
+import { shieldCheckmarkOutline } from 'ionicons/icons';
 
 const Index = () => {
-  const [menuData] = useState<DayMenu[]>(initialMenuData);
+  const [menuData] = useState(initialMenuData);
   const [selectedDay, setSelectedDay] = useState(menuData[0].day);
-  const history = useHistory(); // CAMBIO AQUÍ
 
   const activeDayMenu = menuData.find(day => day.day === selectedDay);
 
@@ -29,7 +27,7 @@ const Index = () => {
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>Cafetería UTA</IonTitle>
-          <IonButton slot="end" fill="clear" color="light" onClick={() => history.push("/auth")}> {/* CAMBIO AQUÍ */}
+          <IonButton slot="end" fill="clear" color="light" href="/auth">
             <IonIcon slot="start" icon={shieldCheckmarkOutline} />
             Admin
           </IonButton>
@@ -43,9 +41,9 @@ const Index = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonSegment 
-          value={selectedDay} 
-          onIonChange={e => setSelectedDay(e.detail.value as string)}
+        <IonSegment
+          value={selectedDay}
+          onIonChange={e => setSelectedDay(e.detail.value)}
           scrollable
         >
           {menuData.map((day) => (
@@ -62,7 +60,7 @@ const Index = () => {
               <p style={{ color: '#666', fontSize: '0.875rem' }}>
                 {activeDayMenu.foods.length} platillo{activeDayMenu.foods.length !== 1 ? "s" : ""} disponible{activeDayMenu.foods.length !== 1 ? "s" : ""}
               </p>
-              
+
               <div className="ion-padding-top">
                 {activeDayMenu.foods.length > 0 ? (
                   activeDayMenu.foods.map((food) => (
