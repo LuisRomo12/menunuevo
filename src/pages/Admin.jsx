@@ -16,11 +16,10 @@ import {
 import FoodCard from "../components/FoodCard";
 import FoodModal from "../components/FoodModal";
 import { initialMenuData } from "../data/menuData";
-import { logOutOutline, addOutline, restaurantOutline } from 'ionicons/icons';
-import './Admin.css'; // Importamos nuestro nuevo CSS
+import { logOutOutline, addOutline, restaurantOutline, timeOutline } from 'ionicons/icons';
+import './Admin.css';
 
 const Admin = () => {
-  // ... (Toda tu lógica de useState, useEffect y funciones handlers permanece aquí, sin cambios)
   const [menuData, setMenuData] = useState(() => {
     const saved = localStorage.getItem("menuData");
     return saved ? JSON.parse(saved) : initialMenuData;
@@ -29,6 +28,10 @@ const Admin = () => {
   const [editingFood, setEditingFood] = useState(null);
   const [currentDay, setCurrentDay] = useState("Lunes");
   const history = useHistory();
+  const [changeLog, setChangeLog] = useState(() => {
+    const savedLog = localStorage.getItem("changeLog");
+    return savedLog ? JSON.parse(savedLog) : [];
+  });
 
   useEffect(() => {
     const isAdmin = localStorage.getItem("isAdmin");
@@ -40,6 +43,10 @@ const Admin = () => {
   useEffect(() => {
     localStorage.setItem("menuData", JSON.stringify(menuData));
   }, [menuData]);
+
+  useEffect(() => {
+    localStorage.setItem("changeLog", JSON.stringify(changeLog));
+  }, [changeLog]);
 
   const handleLogout = () => {
     localStorage.removeItem("isAdmin");
@@ -60,6 +67,20 @@ const Admin = () => {
   };
   
   const handleDeleteFood = (id) => {
+    const foodToDelete = menuData.flatMap((day) => day.foods).find((f) => f.id === id);
+    const dayOfFood = menuData.find(d => d.foods.some(f => f.id === id));
+
+    if (foodToDelete && dayOfFood) {
+        const timestamp = new Date().toISOString();
+        const newLogEntry = {
+            action: "Eliminado",
+            foodName: foodToDelete.name,
+            day: dayOfFood.day,
+            timestamp,
+        };
+        setChangeLog(prev => [newLogEntry, ...prev]);
+    }
+
     setMenuData((prev) =>
       prev.map((day) => ({
         ...day,
@@ -69,6 +90,25 @@ const Admin = () => {
   };
 
   const handleSaveFood = (foodData) => {
+    const timestamp = new Date().toISOString();
+    let action = foodData.id ? "Editado" : "Agregado";
+    let foodName = foodData.name;
+
+    if(foodData.id) {
+        const originalFood = menuData.flatMap(d => d.foods).find(f => f.id === foodData.id);
+        if(originalFood && originalFood.name !== foodData.name) {
+            foodName = `${originalFood.name} -> ${foodData.name}`
+        }
+    }
+
+    const newLogEntry = {
+        action,
+        foodName: foodName,
+        day: currentDay,
+        timestamp,
+    };
+    setChangeLog(prev => [newLogEntry, ...prev]);
+
     if (foodData.id) {
       setMenuData((prev) =>
         prev.map((day) => ({
@@ -103,6 +143,10 @@ const Admin = () => {
               </div>
             </div>
             <IonButtons slot="end">
+              <IonButton fill="outline" href="/changelog">
+                  <IonIcon slot="start" icon={timeOutline} />
+                  Historial
+              </IonButton>
               <IonButton fill="outline" onClick={handleLogout}>
                 <IonIcon slot="start" icon={logOutOutline} />
                 Salir
